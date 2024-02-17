@@ -9,34 +9,26 @@ import {web3 ,showHistory} from './lib/utils.js';
 
  
  let account;
- let signer;
+ 
  async function initApp() {
-    //  const blockNumber = await web3.eth.getBlockNumber();
-    //  console.log('blockNumber', blockNumber);
-
+    account = accountInput.value;   
  }
- async function checkBalance() {
-     account = accountInput.value;  
+ async function checkBalance() {    
      const balance = await web3.eth.getBalance(account);
      showBalance.innerHTML = web3.utils.fromWei(balance, 'ether'); 
-   const trns =await web3.eth.getTransactionCount(account) 
-     console.log('count-transactions', trns  );
-     
-    
+
 //HISTORY
     const block = await web3.eth.getBlock('latest');   
-    const transactions = block.transactions ;  
-    console.log('transactions-checkbalance', transactions);
+    const transactions = block.transactions ;   
     
-    if(block !== null  &&  transactions !== null){
-        console.log('h',showHistory(trns));
-        
-        showHistory(trns);
+    if(block !== null  &&  transactions !== null){   
+          showHistory(transactions); 
     } 
  }
 
  
  async function transferTO() {
+    // _______GANASHE
     try {
         const trx = {
             from: account ,
@@ -47,10 +39,27 @@ import {web3 ,showHistory} from './lib/utils.js';
         console.log('Trx hash:' ,  trxReceipt.transactionHash,'block number:', trxReceipt.blockNumber);
         
     } catch (error) {
-        console.log('Error', error.message);
-        
+        console.log('Error', error.message);        
     }
-      
+     // _______SEPOLIA
+//     try {
+//            const trx = {
+//                from: account ,
+//               to: toAccountInput.value,
+//               value: '0x1',
+//             //   value: web3.utils.toWei(amountInput.value, 'ether'),//convert to wei
+//               gasPrice: '0x77359400',
+//               maxPriorityFeePerGas: undefined,
+//               maxFeePerGas: undefined
+//             };
+//             console.log('trx', trx);
+//             web3.eth.sendTransaction(trx).on('error', error => console.log);
+// //Error Transaction has been reverted by the EVM
+//             const transactionHash = await web3.eth.sendTransaction(trx);
+//             console.log(transactionHash, 'transactionHash');
+//          } catch (error) {
+//               console.log('Error', error.message);        
+//          }   
  }
  document.addEventListener('DOMContentLoaded', initApp);
  checkBtn.addEventListener('click', checkBalance);

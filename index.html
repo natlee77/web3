@@ -7,7 +7,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.4.0/web3.min.js"
             integrity="sha512-9KPDCVlm3clvZUmFQLt9apyK2Z8PyDyaOVtaBiwefKt2S+UzLFMJ61PQ6AhWFrYkOe4tR0qdClm4xnA3L8brcw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
+
         <link
             rel="stylesheet"
             href="./lib/site.css" />
@@ -16,46 +16,47 @@
         <title>WEB3</title>
     </head>
     <body>
+    <main>
         <header class="top-bar">
-            <h1>  Explorer Web3.js </h1>
-          </header>
-        <div class="container">
-           
+            <h1> Explorer Web3.js </h1>
+        </header>
+        <article class="container">
+
             <div>
                 <p>from wallet</p>
-                <input type="text" id="account"  >
-                <button  class="btn" id="checkBalance">check</button>
+                <input type="text" id="account">
+                <button class="btn" id="checkBalance">check</button>
             </div>
 
             <p>ETH balance</p>
-            <div id="balance"   > </div>
-             
+            <div id="balance"> </div>
+
             <div>
                 <p>amount to transfer </p>
                 <input type="text" id="amount" style="width:100%"
                     placeholder="amount to transfer">
             </div>
-           
-            
+
             <div>
                 <p>transfer to wallet</p>
-            <input type="text" id="toAccount"  
-                placeholder="transfer to">
-            <button  class="btn btn-primary"  id="transfer">transfer</button>
+                <input type="text" id="toAccount"
+                    placeholder="transfer to">
+                <button class="btn btn-primary" id="transfer">transfer</button>
             </div>
-            <hr  />
+
+            <hr />
             <section>
                 <h4>Transaktions</h4>
                 <div class="transactions-container">
-                  <div>
-                    <span>Från</span>
-                    <span>Till</span>
-                    <span>Ethers</span>
-                  </div>
-                  <div id="transactions">07890860890679</div>
+                    <div>
+                        <span>Från</span>
+                        <span>Till</span>
+                        <span>Ethers</span>
+                    </div>
+                    <div id="transactions"> </div>
                 </div>
-              </section>
-        </div>
-       
+            </section>
+        </article>
+    </main>
     </body>
 </html>
