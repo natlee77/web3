@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.4.0/web3.min.js"
+            integrity="sha512-9KPDCVlm3clvZUmFQLt9apyK2Z8PyDyaOVtaBiwefKt2S+UzLFMJ61PQ6AhWFrYkOe4tR0qdClm4xnA3L8brcw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <link
+            rel="stylesheet"
+            href="./lib/site.css" />
+        <script type="module" src="site.js"></script>
+
+        <title>Metamask</title>
+    </head>
+    <body>
+        <header class="top-bar">
+            <h1>  Explorer Metamask </h1>
+          </header>
+
+
+       <div class="container">
+           <button id="connect" class="btn" style="width:100%">connect metamask</button>
+             <div>
+                <p> metamask wallet</p>
+                <input type="text" id="account"  >
+                 <button  class="btn" id="checkBalance">check</button>  
+            </div>
+ 
+            <p>ETH balance-SepoliaETH</p>
+            <div id="balance"   > </div>
+            <p>Chain ID (HEX)</p>
+            <div id="chain" >  </div>
+            <div>
+                <p>amount to transfer </p>
+                <input type="text" id="amount" style="width:100%"
+                    placeholder="amount to transfer">
+            </div>
+           
+            
+            <div>
+                <p>transfer to wallet</p>
+            <input type="text" id="toAccount"  
+                placeholder="transfer to">
+            <button  class="btn btn-primary"  id="transfer">transfer</button>
+            </div> 
+            <hr  />
+            <section>
+                <h4>Transaktions</h4>
+                <div class="transactions-container">
+                  <div>
+                    <span>Från</span>
+                    <span>Till</span>
+                    <span>Ethers</span>
+                  </div>
+                  <div id="transactions">  </div>
+                </div>
+              </section>  
+        </div>  
+       
+    </body>
+</html>

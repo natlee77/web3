@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./site.css">
+        
+    </script>
+    <script type="module" src="./index.js"></script>
+    <title>ether.js</title>
+</head>
+<body>
+  <header class="top-bar">
+    <h1>  Explorer Ethers.js </h1>
+</header>
+   <main>
+    <article class="container">      
+      
+        <div> 
+            <p>from wallet</p>
+            <input type="text" id="account"  >
+            <button id="checkBalance" class="btn">check</button>        
+        </div>
+        <div>
+            <p>ETH balance</p>
+            <div id="balance"></div>
+        </div>
+       
+        <div>
+            <p>amount to transfer </p>
+            <input type="text" id="amount"  
+                placeholder="amount to transfer">
+        </div>
+        
+        <div> 
+            <p>transfer to wallet</p>
+            <input type="text" id="toAccount"  
+            placeholder="transfer to">
+            <button id="transfer" class="btn">transfer</button>
+
+        </div>
+        <hr  />
+        <section>
+            <h4>Transaktions</h4>
+            <div class="transactions-container">
+              <div>
+                <span>Från</span>
+                <span>Till</span>
+                <span>Ethers</span>
+              </div>
+              <div id="transactions">
+                <!-- display transactions   -->
+              </div>
+            </div>
+          </section>
+    </article>
+  
+
+</body>
+</html>
