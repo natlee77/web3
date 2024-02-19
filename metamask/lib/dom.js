@@ -1,4 +1,4 @@
-import { web3 } from './utils.js';
+  
 const transactionList = document.querySelector('#transactions');
 
 export function createTransactionList(transaction) {

@@ -18,11 +18,11 @@ import { ethers} from './lib/ethers-5.2.esm.min.js';
  async function checkBalance() {
      account = accountInput.value;
      const balance = await provider.getBalance(account);
-
+console.log('account', account);
+const chainId = await provider.getNetwork();
+console.log('chainId', chainId);
      //HISTORY
      let scanProvaider = new ethers.providers.EtherscanProvider();
-     console.log('scanProvaider', scanProvaider);
-     
      const history = await scanProvaider.getHistory(account);
        console.log('history', history);
      //  console.log('TransactionCount', await provider.getTransactionCount(account));
@@ -35,24 +35,32 @@ import { ethers} from './lib/ethers-5.2.esm.min.js';
      signer = provider.getSigner(account);
      console.log('signer', signer);
     const amount = ethers.utils.parseEther(amountInput.value);
+console.log('amount', amount);
 
      // GANACHE
-      const transaction = await signer.sendTransaction({         
-          to: toAccountInput.value,
-          value: ethers.utils.parseEther(amountInput.value),
-          gasLimit: 21000, 
-      })
-     //sepolia
-      /*  const transaction = await signer.sendTransaction({  
-            gas:21000,
-            value : {
-                gas: 21000 ,
-                value:{  amount: amount,  },    //error i BIGNUMBER       
-                from :account,
-                to: toAccountInput.value,
-                gasLimit :{  undefined,  } 
-             }     
-     })   */
+    //   const transaction = await signer.sendTransaction({         
+    //       to: toAccountInput.value,
+    //       value: ethers.utils.parseEther(amountInput.value),
+    //       gasLimit: 21000, 
+    //   })
+
+
+     //____________SEPOLIA
+        const transaction = await signer.sendTransaction({  
+            to: toAccountInput.value,
+            value:  amount  ,
+            gasLimit: "21000",
+            maxPriorityFeePerGas: ethers.utils.parseEther('500000'),
+            maxFeePerGas: ethers.utils.parseEther( '20' ),
+            // nonce: await ethers.provider.getTransactionCount(account, 'latest'),
+            type: 2,
+            chainId: 11155111,  
+
+  
+            
+              
+     })    
+console.log('gasprice', ethers.utils.formatEther(transaction.gasPrice)  );
 
     
       console.log('transaction', transaction);   

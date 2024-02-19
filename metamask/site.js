@@ -1,7 +1,4 @@
-import {
-  showHistory,
-  formatBalance,
-  formatChainAsNum
+import {  showHistory,  formatBalance,  formatChain 
 } from "./lib/utils.js";
 const connectMetamask = document.getElementById('connect');
 const accountInput = document.getElementById('account');
@@ -54,15 +51,37 @@ async function checkBalance() {
  
    
   showBalance.innerHTML = balance;
-  showChain.innerHTML = chainId;
+  showChain.innerHTML = formatChain(chainId) ;
+ const block= await window.ethereum.request({
+    "method": "eth_blockNumber",
+    "params": []
+  });
+  console.log('block', block);
+ const blockTransactionCount = await window.ethereum.request({
+    "method": "eth_getBlockTransactionCountByNumber",
+    "params": [
+     block,
+    ]
+  });
+  console.log('BlockTransaction', blockTransactionCount);
+  const getTransactionByHash = await window.ethereum.request({
+    "method": "eth_getTransactionByHash",
+    "params": [
+      "0x6c5be329b59cedaa4ae8c4bf59a2d4bbd3fcc9408b74c00972479bb58a32ef46"
+    ]
+  });
+  console.log('getTransactionByHash', getTransactionByHash);
+  
   //HISTORY  
   const transactions = await window.ethereum.request({
-    "method": "eth_getTransaction ",   
+    "method": "eth_getTransactionCount",     
     "params": [
-      accountInput.value,
-      'latest',
-    ]
+        accountInput.value,
+        'latest',
+    ]  
   })
+  
+console.log('transactions', transactions);
 
   if (transactions !== null) {
     showHistory(transactions);
@@ -71,6 +90,27 @@ async function checkBalance() {
 
 async function sendFunds() {
   try {
+    const amount= parseFloat(amountInput.value)* Math.pow(10,18);
+    console.log('amount', amount);
+    console.log('Hex Value', Number(amount).toString(16));
+    const response = await window.ethereum.request({
+       method : "eth_sendTransaction",
+       params : [
+        {
+           from : accountInput.value,
+           to: toAccountInput.value,
+           value: amount.toString(16),
+           gas :  Number(21000).toString(16),
+           gasPrice: Number(2500000 ).toString(16),
+
+        }
+      ]
+    })
+    const txRecept = await window.ethereum.request({
+      "method": "eth_getTransactionReceipt",
+    })
+    console.log('txRecept', txRecept, 'response', response, 'txRecept-hash', txRecept.blockHash);  
+    
   } catch (error) {
     console.log(error);
   }
